@@ -1,0 +1,4 @@
+﻿  Time.cpp
+f:\cworkspace\learn\helloworld\primerplus11\time.cpp(40): warning C4244: “*=”: 从“double”转换到“int”，可能丢失数据
+f:\cworkspace\learn\helloworld\primerplus11\time.cpp(41): warning C4244: “*=”: 从“double”转换到“int”，可能丢失数据
+  PrimerPlus11.vcxproj -> F:\cworkspace\learn\HelloWorld\Debug\PrimerPlus11.exe
