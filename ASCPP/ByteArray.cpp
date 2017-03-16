@@ -1,5 +1,6 @@
 #include "ByteArray.h"
 #include "Endian.h"
+#include <string>
 
 ByteArray::ByteArray()
 {
@@ -9,7 +10,7 @@ ByteArray::ByteArray()
 	endian = Endian::LITTLE_ENDIAN;
 }
 
-ByteArray::ByteArray(unsigned char *data,int length)
+ByteArray::ByteArray(char *data,int length)
 {
 	this->length = length;
 	this->data = new unsigned char[length];
@@ -124,6 +125,23 @@ float ByteArray::readFloat()
 	}
 }
 
+string ByteArray::readUTFBytes(int len)
+{
+	if (isOutofSize(len))
+		return NULL;
+	else
+	{
+		char *ch = new char[len + 1];
+		memcpy(ch, data + position, len);
+		ch[len] = '\0';
+
+		setPosition(position + len);
+
+		string result(ch);
+		return result;
+	}
+}
+
 void ByteArray::writeByte(char value)
 {
 	writeUnsignedByte(value);
@@ -147,8 +165,8 @@ void ByteArray::writeUnsignedShort(unsigned short value)
 {
 	if (!isOutofSize(2))
 	{
-		char ch0 = (value & 0xff00) >> 8;
-		char ch1 = value & 0xff;
+		unsigned char ch0 = (value & 0xff00) >> 8;
+		unsigned char ch1 = value & 0xff;
 
 		if (endian == Endian::BIG_ENDIAN)
 		{
@@ -173,10 +191,10 @@ void ByteArray::writeUnsignedInt(unsigned int value)
 {
 	if (!isOutofSize(4))
 	{
-		char ch0 = (value & 0xff000000) >> 24;
-		char ch1 = (value & 0xff0000) >> 16;
-		char ch2 = (value & 0xff00) >> 8;
-		char ch3 = value & 0xff;
+		unsigned char ch0 = (value & 0xff000000) >> 24;
+		unsigned char ch1 = (value & 0xff0000) >> 16;
+		unsigned char ch2 = (value & 0xff00) >> 8;
+		unsigned char ch3 = value & 0xff;
 
 		if (endian == Endian::BIG_ENDIAN)
 		{

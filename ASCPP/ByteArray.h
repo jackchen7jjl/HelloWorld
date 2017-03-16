@@ -1,11 +1,13 @@
 #pragma once
+#include <string>
+
 using namespace std;
 
 class ByteArray
 {
 public:
 	ByteArray();
-	ByteArray(unsigned char *data, int length);
+	ByteArray(char *data, int length);
 	~ByteArray();
 
 	char readByte();
@@ -17,6 +19,8 @@ public:
 	unsigned int readUnsignedInt();
 
 	float readFloat();
+
+	string readUTFBytes(int len);
 
 	void writeByte(char value);
 	void writeShort(short value);

@@ -9,7 +9,9 @@ void printBytesByte(ByteArray &bytes,int len)
 	for (int i = 0; i < len; i++)
 	{
 		char val = bytes.readByte();
-		printf("val = %d ", val);
+		bytes.setPosition(bytes.getPosition() - 1);
+		unsigned va2 = bytes.readUnsignedByte();
+		printf("val = %d %d ", val, va2);
 	}
 	printf("\n");
 }
@@ -47,7 +49,7 @@ void printBytesFloat(ByteArray &bytes, int len)
 
 int main()
 {
-	unsigned char data[1024];
+	char data[1024];
 	for (int i = 0; i < 1024; i++)
 	{
 		data[i] = (char)(i%255);
@@ -63,7 +65,7 @@ int main()
 	bytes.setPosition(0);
 	for (int i = 0; i < 7; i++)
 	{
-		bytes.writeByte(i + 10);
+		bytes.writeByte(i + 200);
 	}
 
 	bytes.setPosition(0);
