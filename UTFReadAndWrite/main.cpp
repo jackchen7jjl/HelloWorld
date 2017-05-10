@@ -75,6 +75,7 @@ int main()
 	printChar(ch1);
 	printChar(ch2);
 
+	cout << ch1 << endl;
 
 	char *ch = new char[100];
 
